@@ -6,7 +6,7 @@ class Model{
     protected $message_type;
     protected $sender;
 
-    public function __construnct($room_id, $message, $message_type, $sender) {
+    public function __construct($room_id, $message, $message_type, $sender) {
         $this->room_id = $room_id;
         $this->message = $message;
         $this->message_type = $message_type;

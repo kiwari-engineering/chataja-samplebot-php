@@ -13,16 +13,23 @@ class Controller{
     protected $qismeResponse;
     protected $apiurl;
 
-    protected function getQismeResponse() {
+    function __construct(){
+    }
+
+    protected function getQismeResponse(){
         return $this->qismeResponse;
     }
 
-    private function getResponseContent() {
+    private function getResponseContent(){
         return json_decode(file_get_contents("php://input"), true);
     }
 
     function getResponse(){
         $this->qismeResponse = $this->getResponseContent();
         file_put_contents('log-comment.txt', json_encode($this->getQismeResponse(), JSON_PRETTY_PRINT));
+    }
+
+    function run(){
+
     }
 }
