@@ -5,13 +5,12 @@ use Model;
 
 class Controller{
     private $access_token  = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0Njk1NSwidGltZXN0YW1wIjoiMjAxOS0wNC0wNSAwNjoxMjo0MSArMDAwMCJ9.u5PHjfNPrRL_nhh5S-UUSNLBr2kKBlBI89px2L2jjdg";
-    private $api    = "https://qisme.qiscus.com/api/v1/chat/conversations";
+    private $api    = "https://qisme.qiscus.com/api/v1/chat/conversations/";
     protected $headers = array(
         'Content-Type' => 'application/json',
         'content-type' => 'multipart/form-data'
     );
     protected $qismeResponse;
-    protected $apiurl;
 
     function __construct(){
     }
@@ -24,12 +23,41 @@ class Controller{
         return json_decode(file_get_contents("php://input"), true);
     }
 
-    function getResponse(){
+    protected function getResponse(){
         $this->qismeResponse = $this->getResponseContent();
         file_put_contents('log-comment.txt', json_encode($this->getQismeResponse(), JSON_PRETTY_PRINT));
     }
 
-    function run(){
+    protected function replyCommandButton(){
 
+    }
+
+    protected function replyCommandText(){
+
+    }
+
+    protected function replyCommandLocation(){
+
+    }
+
+    protected function replyCommandCaraousel(){
+
+    }
+
+    protected function replyCommandCard(){
+
+    }
+
+    function run(){
+        $this->getResponse();
+        $data = new Model(
+            $this->getQismeResponse()['chat_room']['qiscus_room_id'],
+            $this->getQismeResponse()['message']['text'],
+            $this->getQismeResponse()['message']['type'],
+            $this->getQismeResponse()['from']['fullname']
+        );
+        if($data->getMessage() != null){
+            $find_c = strpos($data->getMessage(), '/');
+        }
     }
 }
