@@ -82,7 +82,7 @@ class Controller{
                         case 'card':
                             break;
                         default:
-                            $this->replyCommandText();
+                            $this->replyCommandText($data->getSender(),$data->getMessageType());
                             break;            
                     }
                 }else{
