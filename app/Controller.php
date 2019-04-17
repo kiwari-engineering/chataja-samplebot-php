@@ -70,7 +70,7 @@ class Controller{
         if($data->getMessage() != null){
             $find_slash = strpos($data->getMessage(), '/');
             if($find_slash[1] !== false){
-                $command = explode("/",$this->getMessage());
+                $command = explode("/",$data->getMessage());
                 if(isset($command[1])){
                     switch($command[1]){
                         case 'location':
