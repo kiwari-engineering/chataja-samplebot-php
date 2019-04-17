@@ -77,5 +77,6 @@ class Controller{
                     $this->replyCommandText();
                 }
             }
+        }
     }
 }
