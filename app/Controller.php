@@ -57,7 +57,25 @@ class Controller{
             $this->getQismeResponse()['from']['fullname']
         );
         if($data->getMessage() != null){
-            $find_c = strpos($data->getMessage(), '/');
-        }
+            $find_slash = strpos($data->getMessage(), '/');
+            if($find_slash[1] !== false){
+                $command = explode("/",$this->getMessage());
+                if(isset($command[1])){
+                    switch($command[1]){
+                        case 'location':
+                            break;
+                        case 'caraousel':
+                            break;
+                        case 'button':
+                            break;
+                        case 'card':
+                            break;
+                        default:
+                            break;            
+                    }
+                }else{
+                    $this->replyCommandText();
+                }
+            }
     }
 }
