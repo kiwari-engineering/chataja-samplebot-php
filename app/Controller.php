@@ -1,11 +1,10 @@
 <?php
 
 use Unirest\Request;
-use Model;
 
 class Controller{
     private $access_token  = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0Njk1NSwidGltZXN0YW1wIjoiMjAxOS0wNC0wNSAwNjoxMjo0MSArMDAwMCJ9.u5PHjfNPrRL_nhh5S-UUSNLBr2kKBlBI89px2L2jjdg";
-    private $apiurl    = "https://qisme.qiscus.com/api/v1/chat/conversations/";
+    private $apiurl    = "https://qisme.qiscus.com/api/v1/chat/conversations";
     protected $headers = array(
         'Content-Type' => 'application/json',
         'content-type' => 'multipart/form-data'
@@ -15,7 +14,7 @@ class Controller{
     function __construct(){
     }
 
-    protected function getQismeResponse(){
+    private function getQismeResponse(){
         return $this->qismeResponse;
     }
 
@@ -23,16 +22,16 @@ class Controller{
         return json_decode(file_get_contents("php://input"), true);
     }
 
-    protected function getResponse(){
+    private function getResponse(){
         $this->qismeResponse = $this->getResponseContent();
         file_put_contents('log-comment.txt', json_encode($this->getQismeResponse(), JSON_PRETTY_PRINT));
     }
 
-    protected function replyCommandButton(){
+    private function replyCommandButton(){
 
     }
 
-    protected function replyCommandText($display_name,$message_type){
+    private function replyCommandText($display_name,$message_type){
         $comment = 
         "Maaf, ".$display_name." command yang ketik salah. jenis pesan kamu adalah ".$message_type."\n".
         "Silahkan coba command berikut : /location, /button, /card, /carousel";
@@ -47,15 +46,15 @@ class Controller{
         print_r($post_comment->raw_body);
     }
 
-    protected function replyCommandLocation(){
+    private function replyCommandLocation(){
 
     }
 
-    protected function replyCommandCaraousel(){
+    private function replyCommandCaraousel(){
 
     }
 
-    protected function replyCommandCard(){
+    private function replyCommandCard(){
 
     }
 
@@ -86,7 +85,7 @@ class Controller{
                             break;            
                     }
                 }else{
-                    $this->replyCommandText();
+                    $this->replyCommandText($data->getSender(),$data->getMessageType());
                 }
             }
         }
