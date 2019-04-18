@@ -4,12 +4,12 @@ use Unirest\Request;
 
 class Controller{
     private $access_token  = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0Njk1NSwidGltZXN0YW1wIjoiMjAxOS0wNC0wNSAwNjoxMjo0MSArMDAwMCJ9.u5PHjfNPrRL_nhh5S-UUSNLBr2kKBlBI89px2L2jjdg";
-    private $apiurl    = "https://qisme.qiscus.com/api/v1/chat/conversations";
-    protected $headers = array(
+    private $apiurl    = "https://qisme.qiscus.com/api/v1/chat/conversations/";
+    private $headers = array(
         'Content-Type' => 'application/json',
-        'content-type' => 'multipart/form-data'
+        'Content-Type' => 'multipart/form-data'
     );
-    protected $qismeResponse;
+    private $qismeResponse;
 
     function __construct(){
     }
@@ -31,19 +31,19 @@ class Controller{
 
     }
 
-    private function replyCommandText($display_name,$message_type){
+    private function replyCommandText($display_name,$message_type,$room_id){
         $comment = 
         "Maaf, ".$display_name." command yang ketik salah. jenis pesan kamu adalah ".$message_type."\n".
         "Silahkan coba command berikut : /location, /button, /card, /carousel";
 
         $replay = array(
             'access_token'=>$this->access_token,
-            'topic_id'=>$this->room_id,
+            'topic_id'=>$room_id,
             'type'=>'text',
             'comment'=> $comment
         );
         $post_comment  = Request::post($this->apiurl."post_comment", $this->headers, $replay);
-        print_r($post_comment->raw_body);
+        $post_comment->raw_body;
     }
 
     private function replyCommandLocation(){
@@ -81,11 +81,11 @@ class Controller{
                         case 'card':
                             break;
                         default:
-                            $this->replyCommandText($data->getSender(),$data->getMessageType());
+                            $this->replyCommandText($data->getSender(),$data->getMessageType(),$data->getRoomId());
                             break;            
                     }
                 }else{
-                    $this->replyCommandText($data->getSender(),$data->getMessageType());
+                    $this->replyCommandText($data->getSender(),$data->getMessageType(),$data->getRoomId());
                 }
             }
         }

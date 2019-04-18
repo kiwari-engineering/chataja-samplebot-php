@@ -1,12 +1,12 @@
 <?php
 
 class Model{
-    protected $room_id;
-    protected $message;
-    protected $message_type;
-    protected $sender;
+    var $room_id;
+    var $message;
+    var $message_type;
+    var $sender;
 
-    public function __construct($room_id, $message, $message_type, $sender) {
+    function __construct($room_id, $message, $message_type, $sender) {
         $this->room_id = $room_id;
         $this->message = $message;
         $this->message_type = $message_type;
