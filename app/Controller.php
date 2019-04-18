@@ -1,6 +1,6 @@
 <?php
 
-use Unirest\Request;
+use Unirest\Request; //paggil depedensi unirest
 
 class Controller{
     private $access_token  = "<input access token disini>"; //akses token dapat diambil dari sini https://qisme.qiscus.com/app/kiwari-prod
@@ -8,7 +8,7 @@ class Controller{
     private $headers = array(
         'Content-Type' => 'application/json',
         'Content-Type' => 'multipart/form-data'
-    ); 
+    ); //set headers untuk request
     private $qismeResponse; //response atribut
 
     function __construct(){
