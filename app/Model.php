@@ -1,5 +1,6 @@
 <?php
 
+//model untuk menampung response data dari webhook (Qisme API) ke callback url
 class Model{
     var $room_id;
     var $message;
