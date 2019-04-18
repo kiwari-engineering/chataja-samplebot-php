@@ -62,8 +62,8 @@ class Controller{
 
     private function replyCommandText($display_name,$message_type,$room_id){
         $comment = 
-        "Maaf, ".$display_name." command yang kamu ketik salah. jenis pesan kamu adalah ".$message_type.".\n".
-        "Silahkan coba command berikut : /location, /button, /card, /carousel";
+        "Maaf ".$display_name.", command yang kamu ketik salah. Jenis pesan kamu adalah ".$message_type.". Silahkan coba command berikut :\n".
+        "/location, /button, /card, /carousel";
 
         $replay = array(
             'access_token'=>$this->access_token,
