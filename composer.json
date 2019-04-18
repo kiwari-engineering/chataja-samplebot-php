@@ -1,4 +1,6 @@
 {
+    "name": "Kiwari Chatbot Sample",
+    "description": "Kiwari chatbot webhook method with PHP.",
     "authors": [
         {
             "name": "Kiwari Chat",
