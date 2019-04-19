@@ -15,6 +15,7 @@
 $ git clone https://gitlab.playcourt.id/iskandarsuhaimi/sample-bot-kiwari.git
 $ cd sample-bot-kiwari
 $ composer install
+$ composer dump-autoload -o
 ```
 
 * Login to [Kiwari User Dashboard](https://qisme.qiscus.com/app/kiwari-prod)
