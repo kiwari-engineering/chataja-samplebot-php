@@ -62,8 +62,8 @@ class Controller{
             'type'=>'buttons',
             'payload'=> json_encode($payload)
         );
-        $post_comment  = Request::post($this->apiurl."post_comment", $this->headers, $replay);
-        $post_comment->raw_body;
+        $buttons  = Request::post($this->apiurl."post_comment", $this->headers, $replay);
+        $buttons->raw_body;
     }
 
     //contoh penggunaan api post-comment untuk jenis text
@@ -175,8 +175,8 @@ class Controller{
             'type'=>'carousel',
             'payload'=> json_encode($payload)
         );
-        $location  = Request::post($this->apiurl."post_comment", $this->headers, $replay);
-        $location->raw_body;
+        $carousel  = Request::post($this->apiurl."post_comment", $this->headers, $replay);
+        $carousel->raw_body;
     }
 
     //contoh penggunaan api post-comment untuk jenis card
@@ -216,8 +216,8 @@ class Controller{
             'type'=>'card',
             'payload'=> json_encode($payload)
         );
-        $location  = Request::post($this->apiurl."post_comment", $this->headers, $replay);
-        $location->raw_body;
+        $card  = Request::post($this->apiurl."post_comment", $this->headers, $replay);
+        $card->raw_body;
     }
 
     //method untuk running bot
@@ -238,6 +238,7 @@ class Controller{
             //cari chat yang mengandung '/' untuk menjalankan command bot
             $find_slash = strpos($data->getMessage(), '/');
             if($find_slash[1] !== false){
+                //ambil nilai text setelah karakter '/'
                 $command = explode("/",$data->getMessage());
                 if(isset($command[1])){
                     switch($command[1]){
