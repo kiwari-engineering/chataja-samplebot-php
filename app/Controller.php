@@ -1,9 +1,9 @@
 <?php
 
-use Unirest\Request; //paggil depedensi unirest
+use Unirest\Request; //panggil depedensi unirest
 
 class Controller{
-    private $access_token  = "<input access token disini>"; //akses token dapat diambil dari sini https://qisme.qiscus.com/app/kiwari-prod
+    private $access_token  = "<input akses token disini>"; //akses token dapat diambil dari sini https://qisme.qiscus.com/app/kiwari-prod
     private $apiurl    = "https://qisme.qiscus.com/api/v1/chat/conversations/"; //dokumentasi penggunaan api ada disini http://qisme-docs.herokuapp.com/api-docs/
     private $headers = array(
         'Content-Type' => 'application/json',
@@ -233,34 +233,31 @@ class Controller{
             $this->getQismeResponse()['from']['fullname']
         );
 
-        //cek pesan dari chat tidak kosong
-        if($data->getMessage() != null){
-            //cari chat yang mengandung '/' untuk menjalankan command bot
-            $find_slash = strpos($data->getMessage(), '/');
-            if($find_slash[1] !== false){
-                //ambil nilai text setelah karakter '/'
-                $command = explode("/",$data->getMessage());
-                if(isset($command[1])){
-                    switch($command[1]){
-                        case 'location':
-                            $this->replyCommandLocation($data->getRoomId());
-                            break;
-                        case 'carousel':
-                            $this->replyCommandCarousel($data->getRoomId());
-                            break;
-                        case 'button':
-                            $this->replyCommandButton($data->getSender(),$data->getRoomId());
-                            break;
-                        case 'card':
-                            $this->replyCommandCard($data->getRoomId());
-                            break;
-                        default:
-                            $this->replyCommandText($data->getSender(),$data->getMessageType(),$data->getRoomId());
-                            break;            
-                    }
-                }else{
-                    $this->replyCommandText($data->getSender(),$data->getMessageType(),$data->getRoomId());
+        //cek pesan dari chat tidak kosong & cari chat yang mengandung '/' untuk menjalankan command bot
+        $find_slash = strpos($data->getMessage(), '/');
+        if($data->getMessage() != null && $find_slash[1] !== false){
+            //ambil nilai text setelah karakter '/'
+            $command = explode("/",$data->getMessage());
+            if(isset($command[1])){
+                switch($command[1]){
+                    case 'location':
+                        $this->replyCommandLocation($data->getRoomId());
+                        break;
+                    case 'carousel':
+                        $this->replyCommandCarousel($data->getRoomId());
+                        break;
+                    case 'button':
+                        $this->replyCommandButton($data->getSender(),$data->getRoomId());
+                        break;
+                    case 'card':
+                        $this->replyCommandCard($data->getRoomId());
+                        break;
+                    default:
+                        $this->replyCommandText($data->getSender(),$data->getMessageType(),$data->getRoomId());
+                        break;            
                 }
+            }else{
+                $this->replyCommandText($data->getSender(),$data->getMessageType(),$data->getRoomId());
             }
         }
     }
