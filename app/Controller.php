@@ -235,7 +235,7 @@ class Controller{
 
         //cek pesan dari chat tidak kosong & cari chat yang mengandung '/' untuk menjalankan command bot
         $find_slash = strpos($data->getMessage(), '/');
-        if($data->getMessage() != null && $find_slash[1] !== false){
+        if($data->getMessage() != null && $find_slash !== false){
             //ambil nilai text setelah karakter '/'
             $command = explode("/",$data->getMessage());
             if(isset($command[1])){
