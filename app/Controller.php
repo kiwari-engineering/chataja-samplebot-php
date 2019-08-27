@@ -4,19 +4,19 @@ use Unirest\Request; //panggil depedensi unirest
 
 class Controller{
     private $access_token  = "<input akses token disini>"; //akses token dapat diambil dari sini https://qisme.qiscus.com/app/kiwari-prod
-    private $apiurl    = "https://qisme.qiscus.com/api/v1/chat/conversations/"; //dokumentasi penggunaan api ada disini http://qisme-docs.herokuapp.com/api-docs/
+    private $apiurl    = "https://api.kiwari.chat/api/v1/chat/conversations/"; //dokumentasi penggunaan api ada disini http://qisme-docs.herokuapp.com/api-docs/
     private $headers = array(
         'Content-Type' => 'application/json',
         'Content-Type' => 'multipart/form-data'
     ); //set headers untuk request
-    private $qismeResponse; //response atribut
+    private $apiResponse; //response atribut
 
     function __construct(){
     }
 
     //ambil nilai response yang sudah di tampung ke atribut
-    private function getQismeResponse(){
-        return $this->qismeResponse;
+    private function getapiResponse(){
+        return $this->apiResponse;
     }
 
     //ambil konten response dari webhook ke callback url
@@ -26,10 +26,10 @@ class Controller{
 
     //tampung konten dari webhook ke atribut
     private function getResponse(){
-        $this->qismeResponse = $this->getResponseContent();
+        $this->apiResponse = $this->getResponseContent();
 
         //log untuk memastikan konten response dari webhook barhasil diambil
-        file_put_contents('log-comment.txt', json_encode($this->getQismeResponse(), JSON_PRETTY_PRINT));
+        file_put_contents('log-comment.txt', json_encode($this->getapiResponse(), JSON_PRETTY_PRINT));
     }
 
     //contoh penggunaan api post-comment untuk jenis button
@@ -39,8 +39,9 @@ class Controller{
             "text" => $comment,
             "buttons" => array(
                 array(
-                    "label" => "Tombol Reply Text",
+                    "label" => "Hitam",
                     "type" => "postback",
+                    "postback_text" => "Putih",
                     "payload" => array(
                         "url" => "#",
                         "method" => "get",
@@ -113,7 +114,7 @@ class Controller{
                         "type" => "postback",
                         "postback_text" => "Load More...",
                         "payload" => array(
-                            "url" => "https://j.id",
+                            "url" => "#",
                             "method" => "GET",
                             "payload"=> null
                         )
@@ -124,7 +125,7 @@ class Controller{
                             "type" => "postback",
                             "postback_text" => "Load More...",
                             "payload" => array(
-                                "url" => "https://www.r.com",
+                                "url" => "#",
                                 "method" => "GET",
                                 "payload" => null
                             )
@@ -134,7 +135,7 @@ class Controller{
                             "type" => "postback",
                             "postback_text" => "Load More...",
                             "payload" => array(
-                                "url" => "https://www.r.com",
+                                "url" => "#",
                                 "method" => "GET",
                                 "payload" => null
                             )
@@ -149,7 +150,7 @@ class Controller{
                         "type" => "postback",
                         "postback_text" => "Load More...",
                         "payload" => array(
-                            "url" => "https://j.id",
+                            "url" => "#",
                             "method" => "GET",
                             "payload"=> null
                         )
@@ -160,7 +161,7 @@ class Controller{
                             "type" => "postback",
                             "postback_text" => "Load More...",
                             "payload" => array(
-                                "url" => "https://www.r.com",
+                                "url" => "#",
                                 "method" => "GET",
                                 "payload" => null
                             )
@@ -193,7 +194,7 @@ class Controller{
                     "type" => "postback",
                     "postback_text" => "Load More...",
                     "payload" => array(
-                        "url" => "https://www.r.com",
+                        "url" => "#",
                         "method" => "GET",
                         "payload" => null
                     )
@@ -203,7 +204,7 @@ class Controller{
                     "type" => "postback",
                     "postback_text" => "Load More...",
                     "payload" => array(
-                        "url" => "https://www.r.com",
+                        "url" => "#",
                         "method" => "GET",
                         "payload" => null
                     )
@@ -227,10 +228,10 @@ class Controller{
 
         //tampung nilai response ke model
         $data = new Model(
-            $this->getQismeResponse()['chat_room']['qiscus_room_id'],
-            $this->getQismeResponse()['message']['text'],
-            $this->getQismeResponse()['message']['type'],
-            $this->getQismeResponse()['from']['fullname']
+            $this->getapiResponse()['chat_room']['qiscus_room_id'],
+            $this->getapiResponse()['message']['text'],
+            $this->getapiResponse()['message']['type'],
+            $this->getapiResponse()['from']['fullname']
         );
 
         //cek pesan dari chat tidak kosong & cari chat yang mengandung '/' untuk menjalankan command bot
