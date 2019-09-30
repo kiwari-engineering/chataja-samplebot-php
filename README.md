@@ -5,7 +5,7 @@
 * [PHP 7](https://www.php.net/)
 * [Composer](https://getcomposer.org/)
 * [ngrok](https://ngrok.com/)
-* [Kiwari Access Token](https://qisme.qiscus.com/app/kiwari-prod)
+* Bot Access Token (you can chat with Chatbot Builder in `Jelajah` menu)
 
 ## How to run
 
@@ -18,8 +18,9 @@ $ composer install
 $ composer dump-autoload -o
 ```
 
-* Login to [Kiwari User Dashboard](https://qisme.qiscus.com/app/kiwari-prod)
-* Create Access Token
+* Go to `Jelajah` menu
+* chat with `Chatbot Builder`
+* Create bot and get `access_token`
 * Copy and Paste to `Controller.php` class
 
 * Run webhook server
@@ -34,6 +35,6 @@ $ php -S localhost:3000
 $ ngrok http 3000
 ```
 
-* Register your webhook url by copy your ngrok https url from CLI at [Kiwari User Dashboard Profile](https://qisme.qiscus.com/app/kiwari-prod)
+* Register your webhook url by copy your ngrok https url from CLI, then input it to `Chatbot Builder`
 
 * Enjoy!
