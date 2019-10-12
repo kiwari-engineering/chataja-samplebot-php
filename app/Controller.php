@@ -4,7 +4,7 @@ use Unirest\Request; //panggil depedensi unirest
 
 class Controller{
     private $access_token  = "<input akses token disini>"; //akses token dapat diambil dari sini https://qisme.qiscus.com/app/kiwari-prod
-    private $apiurl    = "https://api.kiwari.chat/api/v1/chat/conversations/"; //dokumentasi penggunaan api ada disini http://qisme-docs.herokuapp.com/api-docs/
+    private $apiurl    = "https://api.chataja.co.id/api/v1/chat/conversations/"; //dokumentasi penggunaan api ada disini http://qisme-docs.herokuapp.com/api-docs/
     private $headers = array(
         'Content-Type' => 'application/json',
         'Content-Type' => 'multipart/form-data'
