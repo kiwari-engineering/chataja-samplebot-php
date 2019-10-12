@@ -53,6 +53,7 @@ class Controller{
                     "type" => "link",
                     "payload" => array(
                         "url" => "https://www.kiwari.chat",
+                        "method" => "get"
                     )
                 )
             )
