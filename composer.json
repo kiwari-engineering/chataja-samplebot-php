@@ -1,10 +1,10 @@
 {
-    "name": "Kiwari Chatbot Sample",
-    "description": "Kiwari chatbot webhook method with PHP.",
+    "name": "ChatAja! Chatbot Sample",
+    "description": "ChatAja! bot webhook method with PHP.",
     "authors": [
         {
-            "name": "Kiwari Chat",
-            "email": "info@kiwari.chat"
+            "name": "ChatAja!",
+            "email": "admin@chataja.co.id"
         },
         {
             "name": "Iskandar Suhaimi",
