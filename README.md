@@ -1,4 +1,4 @@
-# Kiwari Bot Webhook Sample with PHP
+# ChatAja! Bot Webhook Sample with PHP
 
 ## Requirements
 
@@ -35,6 +35,6 @@ $ php -S localhost:3000
 $ ngrok http 3000
 ```
 
-* Register your webhook url by copy your ngrok https url from CLI, then input it to `Chatbot Builder`
+* Register your webhook url by copy your ngrok https url from CLI, then input it into `Chatbot Builder`
 
 * Enjoy!
